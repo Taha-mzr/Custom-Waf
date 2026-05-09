@@ -1,0 +1,66 @@
+[2026-05-08 23:30:46] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: / | Location: Header:Accept | Rule: SQLi-003 (SQL Injection - Comment bypass) | Payload: /*
+[2026-05-08 23:30:46] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /favicon.ico | Location: Header:Accept | Rule: SQLi-003 (SQL Injection - Comment bypass) | Payload: /*
+[2026-05-08 23:31:01] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: / | Location: Header:Accept | Rule: SQLi-003 (SQL Injection - Comment bypass) | Payload: /*
+[2026-05-08 23:31:18] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: / | Location: Header:Accept | Rule: SQLi-003 (SQL Injection - Comment bypass) | Payload: /*
+[2026-05-08 23:39:30] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /rest/products/search?q=UNION%20SELECT | Location: URI | Rule: SQLi-002 (SQL Injection - UNION SELECT) | Payload: UNION SELECT
+[2026-05-08 23:40:53] BLOCKED | IP: 192.168.11.134 | Method: POST | URI: /rest/user/login | Location: Body | Rule: SQLi-001 (SQL Injection - OR bypass) | Payload: ' OR 1=1
+[2026-05-08 23:40:53] BLOCKED | IP: 192.168.11.134 | Method: POST | URI: /rest/user/login | Location: Body | Rule: SQLi-001 (SQL Injection - OR bypass) | Payload: ' OR 1=1
+[2026-05-08 23:44:56] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /confetti-5NW67UGY.js | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:44:56] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /rest/user/whoami?fields=email | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:44:56] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /rest/products/1/reviews | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:44:56] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /rest/products/1/reviews | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:44:56] BLOCKED | IP: 192.168.11.134 | Method: POST | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-j-4&sid=zmlsSqm94MuBgIvbAABV | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:44:58] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-kJF | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:44:59] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-kea | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:45:04] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-lss | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:45:09] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-n5d | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:45:14] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-oK2 | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:45:19] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-pYJ | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:45:24] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-qmi | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:45:29] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-r_L | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:45:34] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-tDi | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:45:39] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-uS0 | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:45:44] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-vgL | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:45:49] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-wuj | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:45:54] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-y75 | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:45:59] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-zLc | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:46:04] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9--aX | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:46:09] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9-_pP | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:46:14] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_11v | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:46:19] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_2Gl | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:46:24] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_3VR | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:46:25] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /rest/admin/application-configuration | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:46:26] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /api/SecurityQuestions/ | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:46:29] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_4jl | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:46:29] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /rest/admin/application-configuration | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:46:34] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_5zV | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:46:40] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_7Bu | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:46:45] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_8QK | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:46:50] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_9ef | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:46:55] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_AtB | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:47:00] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_C5u | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:47:05] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_DLR | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:47:10] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_EZt | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:47:15] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_FoP | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:47:20] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_H0m | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:47:25] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_IFK | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:47:30] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_JU6 | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:47:35] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_KiY | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:47:40] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_Lx7 | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:47:45] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_N9W | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:47:50] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_OP0 | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:47:55] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_Pda | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:48:00] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_Qry | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:48:01] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /rest/user/whoami?fields=email | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:48:01] BLOCKED | IP: 192.168.11.134 | Method: POST | URI: /rest/user/login | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:48:01] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /rest/user/whoami | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:48:05] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_S4C | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:48:10] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_TIQ | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:48:14] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: / | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:48:15] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_UWd | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:48:21] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /socket.io/?EIO=4&transport=polling&t=Pu9_W2_ | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:48:30] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: / | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:48:44] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: / | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:48:53] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: / | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
+[2026-05-08 23:50:18] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /search/products?q=UNION%20SELECT | Location: URI | Rule: SQLi-002 (SQL Injection - UNION SELECT) | Payload: UNION SELECT
+[2026-05-08 23:50:18] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /favicon.ico | Location: Header:Referer | Rule: SQLi-002 (SQL Injection - UNION SELECT) | Payload: UNION SELECT

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>403 - Accès Bloqué</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #1a1a2e;
+            color: #eee;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+            background: #16213e;
+            border-radius: 15px;
+            border: 2px solid #e74c3c;
+            max-width: 600px;
+            box-shadow: 0 0 30px rgba(231,76,60,0.3);
+        }
+        .shield { font-size: 80px; margin-bottom: 20px; }
+        h1 { color: #e74c3c; font-size: 64px; margin-bottom: 5px; }
+        h2 { color: #e74c3c; font-size: 22px; margin-bottom: 30px; }
+        p { color: #aaa; font-size: 15px; line-height: 1.8; margin-bottom: 8px; }
+        .rule {
+            background: #0f3460;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-family: monospace;
+            color: #e74c3c;
+            font-size: 14px;
+            border-left: 4px solid #e74c3c;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="shield">🛡️</div>
+        <h1>403</h1>
+        <h2>Accès Bloqué par le WAF</h2>
+        <p>Votre requête a été identifiée comme <strong style="color:#e74c3c">malveillante</strong>.</p>
+        <p>Cette tentative d'attaque a été <strong>enregistrée et signalée</strong>.</p>
+        <div class="rule">⚠ Attaque détectée — Requête bloquée</div>
+        <div class="footer">Custom WAF — ENSAM Casablanca 2026</div>
+    </div>
+</body>
+</html>

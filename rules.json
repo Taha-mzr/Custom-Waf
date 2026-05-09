@@ -1,0 +1,59 @@
+{
+  "rules": [
+    {
+      "id": "SQLi-001",
+      "name": "SQL Injection - OR bypass",
+      "pattern": "(?i)('\\s*or\\s*'?\\d+\\s*=\\s*\\d+|\\bor\\b\\s+\\d+=\\d+)",
+      "severity": "HIGH"
+    },
+    {
+      "id": "SQLi-002",
+      "name": "SQL Injection - UNION SELECT",
+      "pattern": "(?i)union\\s+select",
+      "severity": "HIGH"
+    },
+
+    {
+      "id": "SQLi-004",
+      "name": "SQL Injection - DROP TABLE",
+      "pattern": "(?i)drop\\s+table",
+      "severity": "CRITICAL"
+    },
+    {
+      "id": "SQLi-005",
+      "name": "SQL Injection - Stacked queries",
+      "pattern": "(?i);\\s*(select|insert|update|delete|drop)",
+      "severity": "HIGH"
+    },
+    {
+      "id": "XSS-001",
+      "name": "XSS - Script tag",
+      "pattern": "(?i)<script[\\s\\S]*?>",
+      "severity": "HIGH"
+    },
+    {
+      "id": "XSS-002",
+      "name": "XSS - Event handler",
+      "pattern": "(?i)on\\w+\\s*=",
+      "severity": "HIGH"
+    },
+    {
+      "id": "XSS-003",
+      "name": "XSS - Javascript protocol",
+      "pattern": "(?i)javascript\\s*:",
+      "severity": "HIGH"
+    },
+    {
+      "id": "XSS-004",
+      "name": "XSS - Iframe injection",
+      "pattern": "(?i)<iframe",
+      "severity": "HIGH"
+    },
+    {
+      "id": "XSS-005",
+      "name": "XSS - SVG onload",
+      "pattern": "(?i)<svg[\\s\\S]*?onload",
+      "severity": "HIGH"
+    }
+  ]
+}
