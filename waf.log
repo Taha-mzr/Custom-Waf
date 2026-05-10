@@ -64,3 +64,9 @@
 [2026-05-08 23:48:53] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: / | Location: Header:Cookie | Rule: XSS-002 (XSS - Event handler) | Payload: ontinueCode=
 [2026-05-08 23:50:18] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /search/products?q=UNION%20SELECT | Location: URI | Rule: SQLi-002 (SQL Injection - UNION SELECT) | Payload: UNION SELECT
 [2026-05-08 23:50:18] BLOCKED | IP: 192.168.11.134 | Method: GET | URI: /favicon.ico | Location: Header:Referer | Rule: SQLi-002 (SQL Injection - UNION SELECT) | Payload: UNION SELECT
+[2026-05-10 14:34:21] BLOCKED | IP: 192.168.0.139 | Method: GET | URI: /products/search?q=UNION%20SELECT | Location: URI | Rule: SQLi-002 (SQL Injection - UNION SELECT) | Payload: UNION SELECT
+[2026-05-10 14:34:21] BLOCKED | IP: 192.168.0.139 | Method: GET | URI: /favicon.ico | Location: Header:Referer | Rule: SQLi-002 (SQL Injection - UNION SELECT) | Payload: UNION SELECT
+[2026-05-10 14:50:44] BLOCKED | IP: 192.168.0.139 | Method: GET | URI: /products/search?q=UNION%20SELECT | Location: URI | Rule: SQLi-002 (SQL Injection - UNION SELECT) | Payload: UNION SELECT
+[2026-05-10 14:50:45] BLOCKED | IP: 192.168.0.139 | Method: GET | URI: /products/search?q=UNION%20SELECT | Location: URI | Rule: SQLi-002 (SQL Injection - UNION SELECT) | Payload: UNION SELECT
+[2026-05-10 14:59:07] BLOCKED | IP: 192.168.0.139 | Method: POST | URI: /rest/user/login | Location: Body | Rule: SQLi-001 (SQL Injection - OR bypass) | Payload: ' OR 1=1
+[2026-05-10 14:59:07] BLOCKED | IP: 192.168.0.139 | Method: POST | URI: /rest/user/login | Location: Body | Rule: SQLi-001 (SQL Injection - OR bypass) | Payload: ' OR 1=1

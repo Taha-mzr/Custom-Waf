@@ -10,7 +10,7 @@ import urllib.error
 from datetime import datetime
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-# ─── Configuration ───
+# Configuration
 WAF_HOST = "0.0.0.0"
 WAF_PORT = 8080
 DASHBOARD_PORT = 9000
@@ -18,16 +18,14 @@ TARGET = "http://127.0.0.1:3000"
 RULES_FILE = "/home/wafserver/waf/rules.json"
 LOG_FILE = "/home/wafserver/waf/waf.log"
 BLOCK_PAGE = "/home/wafserver/waf/block.html"
-SERVER_IP = "192.168.11.133"
-
-# ─── Logging ───
+#Logging 
 logging.basicConfig(
     filename=LOG_FILE,
     level=logging.INFO,
     format="%(message)s"
 )
 
-# ─── Chargement des règles ───
+#Chargement des règles
 def load_rules():
     with open(RULES_FILE, "r") as f:
         data = json.load(f)
@@ -35,7 +33,7 @@ def load_rules():
 
 RULES = load_rules()
 
-# ─── Inspection ───
+#Inspection
 def inspect(value):
     decoded = urllib.parse.unquote_plus(str(value))
     for rule_id, rule_name, pattern in RULES:
@@ -58,7 +56,7 @@ def inspect_all(uri, headers, body):
             return rule_id, rule_name, payload, "Body"
     return None, None, None, None
 
-# ─── Logging des attaques ───
+#Logging des attaques
 def log_attack(ip, method, uri, rule_id, rule_name, payload, location):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     log_entry = (
@@ -73,7 +71,7 @@ def log_attack(ip, method, uri, rule_id, rule_name, payload, location):
     logging.info(log_entry)
     print(log_entry)
 
-# ─── Dashboard ───
+# Dashboard
 def read_logs():
     try:
         with open(LOG_FILE, "r") as f:
@@ -89,26 +87,25 @@ def get_stats(logs):
 
 def render_log_row(log):
     log = log.strip()
-    color = "#e74c3c" if "SQLi" in log else "#f39c12"
-    ts = re.search(r'\[(.*?)\]', log)
-    ip = re.search(r'IP: ([\d.]+)', log)
-    rule = re.search(r'Rule: ([\w-]+ \([^)]+\))', log)
-    payload = re.search(r'Payload: (.+)', log)
+    ts       = re.search(r'\[(.*?)\]', log)
+    ip       = re.search(r'IP: ([\d.]+)', log)
+    rule     = re.search(r'Rule: ([\w-]+ \([^)]+\))', log)
+    payload  = re.search(r'Payload: (.+)', log)
     location = re.search(r'Location: (\S+)', log)
-    ts = ts.group(1) if ts else "?"
-    ip = ip.group(1) if ip else "?"
-    rule = rule.group(1) if rule else "?"
-    payload = payload.group(1)[:60] if payload else "?"
+    ts       = ts.group(1)      if ts      else "?"
+    ip       = ip.group(1)      if ip      else "?"
+    rule     = rule.group(1)    if rule    else "?"
+    payload  = payload.group(1)[:55] if payload else "?"
     location = location.group(1) if location else "?"
-    return f"""
-    <tr>
-        <td style="color:#aaa">{ts}</td>
-        <td style="color:#e74c3c;font-weight:bold">{ip}</td>
-        <td style="color:{color}">{rule}</td>
-        <td style="color:#f39c12">{location}</td>
-        <td style="color:#eee;font-family:monospace;font-size:12px">{payload}</td>
-    </tr>
-    """
+    rule_color = "#e05c5c" if "SQLi" in rule else "#e09a3a"
+    loc_color  = "#7aabcc" if "Header" in location else "#aaa"
+    return f"""<tr>
+        <td>{ts}</td>
+        <td style="color:#e05c5c;font-weight:600">{ip}</td>
+        <td style="color:{rule_color}">{rule}</td>
+        <td style="color:{loc_color}">{location}</td>
+        <td style="font-family:monospace;font-size:12px;color:#ccc">{payload}</td>
+    </tr>"""
 
 def render_dashboard():
     logs = read_logs()
@@ -116,7 +113,7 @@ def render_dashboard():
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     log_rows = "".join(render_log_row(l) for l in reversed(logs[-50:]))
     if not log_rows:
-        log_rows = '<tr><td colspan="5" style="text-align:center;color:#555;padding:30px">Aucune attaque bloquée pour le moment</td></tr>'
+        log_rows = '<tr><td colspan="5" style="text-align:center;color:#555;padding:30px">Aucune attaque bloquee</td></tr>'
 
     return f"""<!DOCTYPE html>
 <html lang="fr">
@@ -126,64 +123,184 @@ def render_dashboard():
     <title>WAF Dashboard</title>
     <style>
         * {{ margin:0; padding:0; box-sizing:border-box; }}
-        body {{ background:#0d1117; color:#eee; font-family:Arial,sans-serif; padding:20px; }}
-        .header {{ display:flex; align-items:center; justify-content:space-between; padding:20px 30px; background:#161b22; border-radius:12px; border:1px solid #30363d; margin-bottom:20px; }}
-        .header h1 {{ font-size:24px; color:#58a6ff; }}
-        .header .time {{ color:#555; font-size:13px; margin-top:5px; }}
-        .status-badge {{ background:#1a7f37; color:#fff; padding:6px 16px; border-radius:20px; font-size:13px; font-weight:bold; }}
-        .cards {{ display:grid; grid-template-columns:repeat(4,1fr); gap:15px; margin-bottom:20px; }}
-        .card {{ background:#161b22; border:1px solid #30363d; border-radius:12px; padding:20px; text-align:center; }}
-        .card .icon {{ font-size:32px; margin-bottom:10px; }}
-        .card .value {{ font-size:36px; font-weight:bold; margin-bottom:5px; }}
-        .card .label {{ color:#555; font-size:13px; }}
-        .card.red .value {{ color:#e74c3c; }}
-        .card.blue .value {{ color:#58a6ff; }}
-        .card.orange .value {{ color:#f39c12; }}
-        .card.green .value {{ color:#2ecc71; }}
-        .info-bar {{ display:flex; gap:15px; margin-bottom:20px; }}
-        .info-item {{ background:#161b22; border:1px solid #30363d; border-radius:8px; padding:12px 20px; flex:1; font-size:13px; }}
-        .info-item span {{ color:#555; }}
-        .info-item strong {{ color:#58a6ff; }}
-        .logs-section {{ background:#161b22; border:1px solid #30363d; border-radius:12px; padding:20px; }}
-        .logs-section h2 {{ font-size:16px; color:#58a6ff; margin-bottom:15px; padding-bottom:10px; border-bottom:1px solid #30363d; }}
-        table {{ width:100%; border-collapse:collapse; }}
-        th {{ text-align:left; padding:10px 15px; color:#555; font-size:12px; text-transform:uppercase; border-bottom:1px solid #30363d; }}
-        td {{ padding:12px 15px; font-size:13px; border-bottom:1px solid #1c2128; }}
-        tr:hover td {{ background:#1c2128; }}
-        .refresh {{ color:#555; font-size:12px; text-align:center; margin-top:15px; }}
+        body {{
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            font-size: 14px;
+            padding: 24px;
+        }}
+
+        .header {{
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 20px 24px;
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }}
+        .header-title {{
+            font-size: 18px;
+            font-weight: 600;
+            color: #e6edf3;
+            margin-bottom: 4px;
+        }}
+        .header-sub {{ color: #7d8590; font-size: 12px; }}
+        .badge-active {{
+            background: #1a4731;
+            color: #3fb950;
+            border: 1px solid #2ea043;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }}
+
+        .cards {{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }}
+        .card {{
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 8px;
+            padding: 20px 24px;
+        }}
+        .card-label {{
+            font-size: 12px;
+            color: #7d8590;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }}
+        .card-value {{
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1;
+        }}
+        .card-value.red    {{ color: #e05c5c; }}
+        .card-value.blue   {{ color: #58a6ff; }}
+        .card-value.orange {{ color: #e09a3a; }}
+        .card-value.green  {{ color: #3fb950; }}
+
+        .info-bar {{
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }}
+        .info-item {{
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 6px;
+            padding: 10px 16px;
+            flex: 1;
+            font-size: 12px;
+            color: #7d8590;
+        }}
+        .info-item span {{ color: #58a6ff; font-weight: 600; }}
+
+        .logs-section {{
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 8px;
+            overflow: hidden;
+        }}
+        .logs-header {{
+            padding: 14px 20px;
+            border-bottom: 1px solid #21262d;
+            font-size: 13px;
+            font-weight: 600;
+            color: #e6edf3;
+        }}
+        table {{ width: 100%; border-collapse: collapse; }}
+        th {{
+            text-align: left;
+            padding: 10px 16px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #7d8590;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #21262d;
+            background: #0d1117;
+        }}
+        td {{
+            padding: 11px 16px;
+            font-size: 13px;
+            border-bottom: 1px solid #161b22;
+            color: #c9d1d9;
+        }}
+        tr:hover td {{ background: #1c2128; }}
+
+        .footer {{
+            text-align: center;
+            margin-top: 16px;
+            font-size: 11px;
+            color: #3d444d;
+        }}
     </style>
 </head>
 <body>
-    <div class="header">
-        <div>
-            <h1>🛡️ WAF Dashboard — ENSAM 2026</h1>
-            <div class="time">Dernière mise à jour : {now}</div>
-        </div>
-        <div class="status-badge">● ACTIF</div>
+
+<div class="header">
+    <div>
+        <div class="header-title">WAF Dashboard — ENSAM Casablanca 2026</div>
+        <div class="header-sub">Derniere mise a jour : {now}</div>
     </div>
-    <div class="cards">
-        <div class="card red"><div class="icon">🚫</div><div class="value">{total}</div><div class="label">Total bloqué</div></div>
-        <div class="card blue"><div class="icon">💉</div><div class="value">{sqli}</div><div class="label">SQLi bloquées</div></div>
-        <div class="card orange"><div class="icon">⚡</div><div class="value">{xss}</div><div class="label">XSS bloquées</div></div>
-        <div class="card green"><div class="icon">📋</div><div class="value">{len(RULES)}</div><div class="label">Règles actives</div></div>
+    <div class="badge-active">ACTIF</div>
+</div>
+
+<div class="cards">
+    <div class="card">
+        <div class="card-label">Total bloque</div>
+        <div class="card-value red">{total}</div>
     </div>
-    <div class="info-bar">
-        <div class="info-item"><span>Port WAF : </span><strong>:{WAF_PORT}</strong></div>
-        <div class="info-item"><span>Cible : </span><strong>{TARGET}</strong></div>
-        <div class="info-item"><span>Log : </span><strong>{LOG_FILE}</strong></div>
+    <div class="card">
+        <div class="card-label">SQLi bloquees</div>
+        <div class="card-value blue">{sqli}</div>
     </div>
-    <div class="logs-section">
-        <h2>📝 Dernières attaques bloquées (auto-refresh 3s)</h2>
-        <table>
-            <thead><tr><th>Timestamp</th><th>IP Attaquant</th><th>Règle</th><th>Location</th><th>Payload</th></tr></thead>
-            <tbody>{log_rows}</tbody>
-        </table>
+    <div class="card">
+        <div class="card-label">XSS bloquees</div>
+        <div class="card-value orange">{xss}</div>
     </div>
-    <div class="refresh">🔄 Actualisation automatique toutes les 3 secondes</div>
+    <div class="card">
+        <div class="card-label">Regles actives</div>
+        <div class="card-value green">{len(RULES)}</div>
+    </div>
+</div>
+
+<div class="info-bar">
+    <div class="info-item">Port WAF : <span>:{WAF_PORT}</span></div>
+    <div class="info-item">Cible : <span>{TARGET}</span></div>
+    <div class="info-item">Log : <span>{LOG_FILE}</span></div>
+</div>
+
+<div class="logs-section">
+    <div class="logs-header">Dernieres attaques bloquees — actualisation toutes les 3s</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>IP Attaquant</th>
+                <th>Regle</th>
+                <th>Location</th>
+                <th>Payload</th>
+            </tr>
+        </thead>
+        <tbody>{log_rows}</tbody>
+    </table>
+</div>
+
+<div class="footer">Custom WAF — ENSAM Casablanca 2026 — Auto-refresh 3s</div>
+
 </body>
 </html>"""
 
-# ─── WAF Handler ───
+#WAF Handler
 class WAFHandler(BaseHTTPRequestHandler):
     def log_message(self, format, *args):
         pass
@@ -242,13 +359,13 @@ class WAFHandler(BaseHTTPRequestHandler):
         else:
             self.forward(method, uri, headers, body)
 
-    def do_GET(self): self.handle_request("GET")
+    def do_GET(self):  self.handle_request("GET")
     def do_POST(self): self.handle_request("POST")
-    def do_PUT(self): self.handle_request("PUT")
+    def do_PUT(self):  self.handle_request("PUT")
     def do_DELETE(self): self.handle_request("DELETE")
     def do_OPTIONS(self): self.handle_request("OPTIONS")
 
-# ─── Dashboard Handler ───
+#  Dashboard Handler
 class DashboardHandler(BaseHTTPRequestHandler):
     def log_message(self, format, *args):
         pass
@@ -261,20 +378,20 @@ class DashboardHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(html)
 
-# ─── Démarrage ───
+# Démarrage 
 if __name__ == "__main__":
-    waf_server = HTTPServer((WAF_HOST, WAF_PORT), WAFHandler)
+    waf_server       = HTTPServer((WAF_HOST, WAF_PORT), WAFHandler)
     dashboard_server = HTTPServer((WAF_HOST, DASHBOARD_PORT), DashboardHandler)
 
     t_dashboard = threading.Thread(target=dashboard_server.serve_forever)
     t_dashboard.daemon = True
     t_dashboard.start()
 
-    print(f"🛡️  WAF démarré sur {WAF_HOST}:{WAF_PORT}")
-    print(f"🎯  Cible : {TARGET}")
-    print(f"📋  Règles chargées : {len(RULES)}")
-    print(f"📊  Dashboard : http://{SERVER_IP}:{DASHBOARD_PORT}")
-    print(f"📝  Logs : {LOG_FILE}")
+    print(f"WAF demarre sur {WAF_HOST}:{WAF_PORT}")
+    print(f"Cible : {TARGET}")
+    print(f"Regles chargees : {len(RULES)}")
+    print(f"Dashboard : http://wafserver-ip:{DASHBOARD_PORT}")
+    print(f"Logs : {LOG_FILE}")
     print(f"─────────────────────────────────────")
 
     waf_server.serve_forever()
